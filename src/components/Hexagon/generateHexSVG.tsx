@@ -67,21 +67,21 @@ class SVGCommands {
 //returns the path's "d" attribute for the hexagon
 export function generateHexSVG(sideLength: number, borderRadius: number) {
 	//from geometry of a hexagon
-	var width = Math.sqrt(3) * sideLength
-	var height = 2 * sideLength
+	const width = Math.sqrt(3) * sideLength
+	const height = 2 * sideLength
 
 	//a, b, c, d, e and f represent the vertices
-	var a, b, c, d, e, f
+	
 	//start at the top point
-	a = new Vec(width / 2, 0)
-	b = new Vec(width, height / 4)
-	c = new Vec(width, 3 * height / 4)
-	d = new Vec(width / 2, height)
-	e = new Vec(0, 3 * height / 4)
-	f = new Vec(0, height / 4)
+	const a = new Vec(width / 2, 0)
+	const b = new Vec(width, height / 4)
+	const c = new Vec(width, 3 * height / 4)
+	const d = new Vec(width / 2, height)
+	const e = new Vec(0, 3 * height / 4)
+	const f = new Vec(0, height / 4)
 
-	if(borderRadius == 0) {
-		var pointyHexagon = new SVGCommands()
+	if(borderRadius === 0) {
+		const pointyHexagon = new SVGCommands()
 		return pointyHexagon.M(a).L(b).L(c).L(d).L(e).L(f).Z().toString()
 	}
 
@@ -90,11 +90,11 @@ export function generateHexSVG(sideLength: number, borderRadius: number) {
 	the start point will be a point slightly to the left of the vertex along the perimeter of the hexagon
 	and the end point will be a point slightly to the right of the vertex along the perimeter of the hexagon
 	the distance that the start and end points are along the adjacent sides is given by the curve radius*/
-	var dl = f.subtract(a).normalize().scalarMultiple(borderRadius)
-	var dr = b.subtract(a).normalize().scalarMultiple(borderRadius)
-	var dd = new Vec(0, borderRadius)
+	const dl = f.subtract(a).normalize().scalarMultiple(borderRadius)
+	const dr = b.subtract(a).normalize().scalarMultiple(borderRadius)
+	const dd = new Vec(0, borderRadius)
 
-	var roundedHexagon = new SVGCommands()
+	const roundedHexagon = new SVGCommands()
 	roundedHexagon
 		.M(a.add(dl))
 		.Q(a, a.add(dr))
@@ -110,7 +110,7 @@ export function generateHexSVG(sideLength: number, borderRadius: number) {
 		.Q(f, f.subtract(dl))
 		.Z()
 
-    var normalHexagon = new SVGCommands()
+    const normalHexagon = new SVGCommands()
         normalHexagon
             .M(a)
             .L(b)

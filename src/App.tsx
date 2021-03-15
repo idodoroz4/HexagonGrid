@@ -1,4 +1,4 @@
-import Hexagon from './components/Hexagon/Hexagon';
+import React from 'react';
 import HexagonGrid from './components/Hexagon/HexagonGrid';
 
 const baseData = [
@@ -21,13 +21,13 @@ const baseData = [
 
 const hexagons = [...baseData, ...baseData, ...baseData, ...baseData, ...baseData, ...baseData, ...baseData]
 
- 
+
 const App = () => (
-  <div style={{display: 'grid', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh', }}>
-    <div style={{width: '100%'}}>
+  <div style={{ display: 'grid', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh', }}>
+    <div style={{ width: '100%' }}>
       {/*<Hexagon sideLength={100} fill='red' elevation={0} img={react} text='oh' />
       <Hexagon sideLength={100} fill='#123566' elevation={0} img={react} text='YEAH!' />*/}
-      <HexagonGrid 
+      <HexagonGrid
         maxHorizontal={5}
         tileSideLengths={60}
         tileElevations={0}

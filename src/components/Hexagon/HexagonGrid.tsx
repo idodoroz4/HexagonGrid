@@ -4,33 +4,33 @@ import Hexagon, { HexagonProps } from './Hexagon';
 
 
 const getRanges = (columnCount: number, maxHorizontal: number) => {
-	if(maxHorizontal == 1) {
+	if(maxHorizontal === 1) {
 		return Array(columnCount).fill(0).map((_, i) => {
 			return [i, i]
 		})
 	}
-	var ranges = [[0, maxHorizontal - 1]]
-	for(var c = 1; c <= columnCount; c++) {
-		var evenOddModifier = c%2==0 ? 0 : -1
+	const ranges = [[0, maxHorizontal - 1]]
+	for(let c = 1; c <= columnCount; c++) {
+		const evenOddModifier = c%2===0 ? 0 : -1
 		ranges[c] = [ranges[c-1][1] + 1, ranges[c-1][1] + maxHorizontal + evenOddModifier]
 	}
 	return ranges
 }
 
 const getColumnCount = (tileCount: number, maxHorizontal: number) => {
-	if(maxHorizontal == 1) return tileCount
-	var columnCount = 0
-	var i = 0
+	if(maxHorizontal === 1) {return tileCount}
+	let columnCount = 0
+	let i = 0
 	while(i <= tileCount) {
-		i += (columnCount%2==0) ? maxHorizontal : maxHorizontal - 1
+		i += (columnCount % 2 === 0) ? maxHorizontal : maxHorizontal - 1
 		columnCount++ 
 	}
 	return columnCount
 }
 
 const getMultipliers = (i: number, ranges: number[][]) => {
-	var YMultiplier = ranges.findIndex((range: number[]) => i >= range[0] && i <= range[1])
-	var XMultiplier = i - ranges[YMultiplier][0] + (YMultiplier%2==0 ? 0 : 0.5)
+	const YMultiplier = ranges.findIndex((range: number[]) => i >= range[0] && i <= range[1])
+	const XMultiplier = i - ranges[YMultiplier][0] + (YMultiplier % 2 === 0 ? 0 : 0.5)
 	return { XMultiplier, YMultiplier }
 }
 
@@ -75,7 +75,7 @@ const HexagonGrid: React.FC<HexagonGridProps> = (props) => {
     const XConst = singleTileWidth + tileGap
     const YConst = 3 * tileSideLengths / 2 + tileElevations + tileGap
 
-    const fullWidth = XConst * (maxHorizontal == 1 ? 1.5 : Math.min(tileCount, maxHorizontal))
+    const fullWidth = XConst * (maxHorizontal === 1 ? 1.5 : Math.min(tileCount, maxHorizontal))
     const fullHeight = (singleTileHeight + tileGap) + ((columnCount - 1) * YConst)
 
     const ranges = getRanges(columnCount, maxHorizontal)
