@@ -17,9 +17,6 @@ const elevationStyleActive = (elevation: number) => {
 	}
 }
 
-const isObjectEmpty = (obj: object) => 
-    Object.keys(obj).keys.length === 0
-
 type HexStyle = {
     normal: object,
     hover: object,
